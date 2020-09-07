@@ -23,8 +23,10 @@ module.exports = function(app) {
     });
 
     app.post("/api/notes", function(req, res) {
-        notes.push(req.body);
-        saveNotes();
+        console.log(req.body);
+
+        // notes.push(req.body);
+        // saveNotes();
     });
 
     app.delete("/api/notes/:id", function(req, res) {

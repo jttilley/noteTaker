@@ -4,15 +4,22 @@ const notes = require("./data/notes");
 const fs = require("fs");
 const path = require("path");
 
+//set next id
+let nextId = 1;
+if (notes.length > 0) {
+    nextId += notes[notes.length-1].id
+}
+
+console.log('nextId: ', nextId);
 
 // create an express server
-var app = express();
+const app = express();
 
-// setup express to handle data parsing
+// setup express middleware to handle data parsing
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
-//setting middleware
-app.use(express.static(__dirname + 'public')); //Serves resources from public folder
+//setting middleware for handeling index.js and style.css
+app.use(express.static('public')); //Serves resources from public folder
 
 // set port
 var PORT = process.env.PORT || 8080;
@@ -37,16 +44,32 @@ app.get("/api/notes", function(req, res) {
 
 app.post("/api/notes", function(req, res) {
     console.log(req.body);
+    const b = req.body;
 
-    // notes.push(req.body);
-    // saveNotes();
+    const newNote = {
+        title: b.title,
+        text: b.text,
+        id: nextId
+    }
+
+    nextId ++; // increment id
+
+    notes.push(newNote);
+    console.log('notes: ', notes);
+
+    saveNotes();
+    res.json({ok : true});
 });
 
 app.delete("/api/notes/:id", function(req, res) {
+    console.log('req.params: ', req.params);
     const id = req.params.id;
-    const index = notes.findIndex(cur => cur.id === id);
+    console.log('id: ', id);
+    const index = notes.findIndex(cur => cur.id == id);
+    console.log('index: ', index);
     notes.splice(index,1);
     saveNotes();
+    res.json({ok: true});
 });
 
 // require("./routes/htmlRoutes")(app);

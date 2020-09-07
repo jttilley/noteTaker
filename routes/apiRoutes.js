@@ -12,9 +12,21 @@ module.exports = function(app) {
 
     app.post("/api/notes", function(req, res) {
         console.log(req.body);
-
-        // notes.push(req.body);
-        // saveNotes();
+        const b = req.body;
+    
+        const newNote = {
+            title: b.title,
+            text: b.text,
+            id: id
+        }
+    
+        id ++; // increment id
+    
+        notes.push(newNote);
+        console.log('notes: ', notes);
+    
+        saveNotes();
+        return res(true);
     });
 
     app.delete("/api/notes/:id", function(req, res) {

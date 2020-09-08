@@ -8,5 +8,25 @@
     "title": "fdbvd",
     "text": "dfbdfbdf ddf df",
     "id": 4
+  },
+  {
+    "title": "ewrfer",
+    "text": "efcefe",
+    "id": 6
+  },
+  {
+    "title": "dfsasdf",
+    "text": "sdvdsvsdv",
+    "id": 7
+  },
+  {
+    "title": "asdvdsvsd",
+    "text": "csdcvsadv",
+    "id": 11
+  },
+  {
+    "title": "node.js",
+    "text": "Node servers - express\n\nconst http = require(‘http’)\n\n\n\nconst PORT = 8080; //generally in the 7-8000s should be save\nenvironment variables are generally all capitals\n\n// Require/import the HTTP module\nvar http = require(\"http\");\n\n// Define a port to listen for incoming requests\nvar PORT = 8080;\n\n// Create a generic function to handle requests and responses\nfunction handleRequest(request, response) {\n\n  // Send the below string to the client when the user visits the PORT URL\n  response.end(\"It Works!! Path Hit: \" + request.url);\n}\n\n// Use the Node HTTP package to create our server.\n// Pass the handleRequest function to empower it with functionality.\nvar server = http.createServer(handleRequest);\n\n// Start our server so that it can begin listening to client requests.\nserver.listen(PORT, function() {\n\n  // Log (server-side) when our server has started\n  console.log(\"Server listening on: http://localhost:\" + PORT);\n});\n\nResponse.end - harsh stop\nResponse.send - nicer way to stop\n\n\n\nto kill a port on Mac:\nFind:\nlsof -i :3000\n\nKill:\nkill -9 <PID>\n\non windows:\nFind:\nnetstat -ano | findstr :<yourPortNumber>\n\nKill:\ntaskkill /PID <typeyourPIDhere> /F\n\nStatus 200 = everything is ok\nstatus 404 = not found\nstatus 500 = server is down\n\n__dirname = looking for an absolute file path of the current directory\n\nfs.readFile(__dirname + “/index.html”. Function(err, data) {\n\tif (err) throw err;\n}\n\n\napp.get(\"/:character\", function(req, res) {\n  var chosen = req.params.character;\n\nfor (var i = 0; i < characters.length; i++) {\n    if (chosen === characters[i].routeName) {\n      return res.json(characters[i]);\n    }\n  }\n\n\treturn res.send(\"No character found”);\n}\n:name stores a variable\nAccess the var with req.params.nane\n\n// Sets up the Express app to handle data parsing\napp.use(express.urlencoded({ extended: true }));\napp.use(express.json());\naccess middleware \ncreates access to request.body info\nApp.use accesses middleware\n\n\nHeroku\n\nvar PORT = process.env.PORT || 3000\ndynamic var to select a port for us\n\nGit push heroku master \nto build and publish\n\n\nNodemon - run this to have the server refresh automatically\nnpx nodemon server.js\n\n\n",
+    "id": 12
   }
 ]
